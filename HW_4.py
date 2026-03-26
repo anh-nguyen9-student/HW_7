@@ -1,9 +1,9 @@
 import sys
 import math
 
-# ----------------------------------------
+
 # GLOBALS
-# ----------------------------------------
+
 
 nodes_no_prune = 0
 
@@ -19,9 +19,8 @@ killer_moves = {}
 rotation_hits = 0
 transposition = {}
 
-# ----------------------------------------
 # BOARD UTILITIES
-# ----------------------------------------
+
 
 def print_board(board):
     for i in range(0, 9, 3):
@@ -56,9 +55,9 @@ def apply_move(board, move, player):
     b[move] = player
     return b
 
-# ----------------------------------------
+
 # ROTATION
-# ----------------------------------------
+
 
 def rotate90(b):
     return [b[6],b[3],b[0],
@@ -84,9 +83,9 @@ def canonical(board):
         rotation_hits += 1
     return best
 
-# ----------------------------------------
+
 # MINIMAX
-# ----------------------------------------
+
 
 def minimax(board, is_max):
     global nodes_no_prune
@@ -144,9 +143,9 @@ def alphabeta(board, alpha, beta, is_max):
                 break
         return v
 
-# ----------------------------------------
+
 # KILLER
-# ----------------------------------------
+
 
 def alphabeta_killer(board, alpha, beta, is_max, depth):
     global nodes_killer, killer_alpha_cuts, killer_beta_cuts
@@ -189,9 +188,9 @@ def alphabeta_killer(board, alpha, beta, is_max, depth):
                 break
         return v
 
-# ----------------------------------------
-# ROTATION + KILLER
-# ----------------------------------------
+
+# ROTATION KILLER
+
 
 def alphabeta_rotation(board, alpha, beta, is_max, depth):
     global nodes_killer, killer_alpha_cuts, killer_beta_cuts
@@ -242,16 +241,16 @@ def alphabeta_rotation(board, alpha, beta, is_max, depth):
         transposition[key] = v
         return v
 
-# ----------------------------------------
+
 # MAIN
-# ----------------------------------------
+
 
 def main():
     global nodes_no_prune, nodes_prune, nodes_killer
     global alpha_cuts, beta_cuts, killer_alpha_cuts, killer_beta_cuts
     global rotation_hits, transposition, killer_moves
 
-    # ✅ Prevent crash (rubric-safe)
+   
     if len(sys.argv) < 2:
         print("Usage: python HW_4.py BOARD_STRING")
         return
